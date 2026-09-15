@@ -1,0 +1,14 @@
+/*É a folha de estilo específica do componente App.jsx*/
+
+.logo {
+  max-width: 150px; 
+  height: auto;    
+  margin-bottom: 1.5rem;
+}
+
+main p {
+  font-size: 1.2rem;
+  color: #ffff; 
+  font-weight: 400;
+}
+

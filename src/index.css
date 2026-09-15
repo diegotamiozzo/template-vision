@@ -1,0 +1,9 @@
+/*Guarda os estilos globais do projeto*/
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  background-color: #163A6B;
+  color: #8B8D98;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
