@@ -1,22 +1,16 @@
-#  React + Vite Clean Template
+#  Front-end visão computacional
 
-Este é um **template** limpo e pré-configurado para iniciar novos projetos em React rapidamente, eliminando o código padrão inicial do Vite.
-
-##  O que já vem configurado:
-- **Estrutura Limpa:** Arquivos de exemplo e logotipos removidos da pasta `src`.
-- **Tema Escuro:** `index.css` configurado com Dark Mode nativo e reset de margens.
-- **Layout Centralizado:** `App.css` estruturado para manter o conteúdo inicial organizado.
-- **Suporte a Logo:** Pronto para carregar imagens locais da pasta `assets`.
+Este é um projeto Front-end inicial para Visão computacional. 
 
 ## Como usar este modelo:
 
 1. Clone o repositório para sua máquina:
 ```bash
-git clone https://github.com/diegotamiozzo/template-react.git
+git clone https://github.com/diegotamiozzo/template-vision.git
 ```
 2. Acesse a pasta do projeto:
 ```bash
-cd template-react
+cd template-vision
 ```
 3. Instale as dependências e rode o servidor de desenvolvimento:
 ```bash

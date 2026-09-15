@@ -1,5 +1,5 @@
 import './App.css'
-import logoMarca from './assets/logo-vision.png'
+import logoMarca from '/logo-vision.png'
 function App() {
   return (
     <main>
