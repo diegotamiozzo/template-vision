@@ -19,3 +19,10 @@ npm run dev
 ```
 4. Acesse a aplicação pelo endereço exibido no terminal, normalmente:
 `http://localhost:5173`
+
+<!-- rodar projeto localmente:
+Para rodar, você abrirá dois terminais:
+
+No terminal da pasta server: node index.js
+
+No terminal da raiz do projeto Vite: npm run de -->
