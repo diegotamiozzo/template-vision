@@ -36,7 +36,7 @@ storage_client = storage.Client.from_service_account_json(
     str(Path(__file__).parent / "credentials.json"),
     project=os.getenv("GOOGLE_CLOUD_PROJECT_ID"),
 )
-bucket = storage.bucket(os.getenv("GOOGLE_CLOUD_BUCKET_NAME"))
+bucket = storage_client.bucket(os.getenv("GOOGLE_CLOUD_BUCKET_NAME"))
 
 
 class LoginRequest(BaseModel):
