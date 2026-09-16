@@ -1,0 +1,15 @@
+@media (max-width: 760px) {
+  .sidebar { position: static; flex-basis: 76px; width: 76px; padding: 1rem .65rem; }
+  .sidebar__brand { justify-content: center; padding: .25rem 0 2rem; }
+  .sidebar__brand div, .sidebar__label, .sidebar__link { font-size: 0; }
+  .sidebar__link { justify-content: center; padding: .8rem; }
+  .sidebar__link span { font-size: 1.1rem; }
+  .sidebar__user { justify-content: center; padding: .75rem 0; }
+  .sidebar__user div, .sidebar__logout { display: none; }
+  .page-content { width: min(100% - 1.5rem, 1180px); padding-top: 1.5rem; }
+  .page-header { align-items: flex-start; flex-direction: column; }
+  .page-stat { align-self: stretch; }
+  .upload-panel, .gallery-section { padding: 1.15rem; }
+  .section-heading { align-items: flex-start; flex-direction: column; }
+  .button--refresh { align-self: stretch; }
+}

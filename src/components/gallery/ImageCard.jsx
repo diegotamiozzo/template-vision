@@ -16,12 +16,8 @@ export default function ImageCard({ image, onDelete, onEdit, onPreview }) {
           <p>{image.updated ? `Atualizada em ${new Date(image.updated).toLocaleDateString('pt-BR')}` : 'Imagem armazenada'}</p>
         </div>
         <div className="image-card__actions">
-          <button className="icon-button" type="button" onClick={() => onEdit(image)} aria-label={`Atualizar ${image.name}`}>
-            Editar
-          </button>
-          <button className="icon-button icon-button--danger" type="button" onClick={() => onDelete(image)} aria-label={`Excluir ${image.name}`}>
-            Excluir
-          </button>
+          <button className="icon-button" type="button" onClick={() => onEdit(image)} aria-label={`Atualizar ${image.name}`}>Editar</button>
+          <button className="icon-button icon-button--danger" type="button" onClick={() => onDelete(image)} aria-label={`Excluir ${image.name}`}>Excluir</button>
         </div>
       </div>
     </article>

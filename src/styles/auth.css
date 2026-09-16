@@ -1,0 +1,26 @@
+.login-shell { display: grid; min-height: 100vh; place-items: center; padding: 1.5rem; background: linear-gradient(135deg, #edf4fc, var(--page-bg) 55%, #e6eef9); }
+.login-card { width: min(100%, 430px); padding: 2.5rem; border: 1px solid rgba(223, 231, 241, .9); border-radius: 20px; background: rgba(255, 255, 255, .94); box-shadow: 0 24px 70px rgba(22, 58, 107, .12); }
+
+/* Ajustado para centralizar a imagem e os textos lado a lado */
+.login-card__brand { 
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem; /* Espaço entre a logo e o texto */
+  margin-bottom: 3rem; 
+}
+
+/* Garante que "Vision" e "Cloud workspace" fiquem um embaixo do outro */
+.login-card__brand div {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.2;
+}
+
+.login-card h1 { margin-bottom: .5rem; color: var(--text); font-size: 2rem; }
+.login-card__description { margin-bottom: 1.75rem; }
+.login-form { display: grid; gap: 1rem; }
+.login-form label { display: grid; gap: .4rem; color: var(--text); font-size: .8rem; font-weight: 700; }
+.login-form input { width: 100%; padding: .8rem .85rem; border: 1px solid var(--line); border-radius: 8px; outline: 0; color: var(--text); background: #fbfdff; }
+.login-form input:focus { border-color: var(--blue); box-shadow: 0 0 0 3px rgba(79, 142, 220, .15); }
+.login-form__submit { width: 100%; margin-top: .4rem; }
