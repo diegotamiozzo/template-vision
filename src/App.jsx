@@ -40,6 +40,16 @@ export default function App() {
     loadImages()
   }, [fetchImages])
 
+  useEffect(() => {
+    if (!notice) return undefined
+
+    const timeoutId = window.setTimeout(() => {
+      setNotice('')
+    }, 3000)
+
+    return () => window.clearTimeout(timeoutId)
+  }, [notice])
+
   const clearFeedback = () => {
     setError('')
     setNotice('')

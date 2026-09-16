@@ -16,6 +16,7 @@ server/.env
 server/credentials.json
 
 # Editor directories and files
+.github/copilot-instructions.md
 .vscode/*
 !.vscode/extensions.json
 .idea
