@@ -12,22 +12,31 @@ from fastapi.middleware.cors import CORSMiddleware
 from fastapi.security import HTTPAuthorizationCredentials, HTTPBearer
 from pydantic import BaseModel
 from google.cloud import storage
+
 load_dotenv(Path(__file__).parent / ".env")
 app = FastAPI()
+
 auth_scheme = HTTPBearer(auto_error=False)
 auth_secret = os.getenv("AUTH_SECRET")
+
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+# --- Rota Raiz para evitar o 404 no Render ---
+@app.get("/")
+def read_root():
+    return {"message": "API do Template Vision está online!", "status": "success"}
+
 # Inicialização do Google Cloud Storage
 storage_client = storage.Client.from_service_account_json(
     str(Path(__file__).parent / "credentials.json"),
     project=os.getenv("GOOGLE_CLOUD_PROJECT_ID"),
 )
-bucket = storage_client.bucket(os.getenv("GOOGLE_CLOUD_BUCKET_NAME"))
+bucket = storage.bucket(os.getenv("GOOGLE_CLOUD_BUCKET_NAME"))
 
 
 class LoginRequest(BaseModel):
@@ -81,6 +90,8 @@ async def login(credentials: LoginRequest):
     ):
         raise HTTPException(status_code=401, detail="Usuário ou senha inválidos.")
     return {"token": create_token(expected_username), "username": expected_username}
+
+
 def get_image_url(blob: storage.Blob) -> str:
     """URL assinada válida por 1 hora (mesmo comportamento do JS)."""
     return blob.generate_signed_url(
@@ -88,10 +99,14 @@ def get_image_url(blob: storage.Blob) -> str:
         expiration=3600,
         method="GET",
     )
+
+
 def validate_file_name(file_name: str) -> str:
     if not file_name or ".." in file_name:
         raise HTTPException(status_code=400, detail="Nome de arquivo inválido.")
     return file_name
+
+
 # --- 1. CREATE (Upload de imagem) ---
 @app.post("/api/images", status_code=201)
 async def upload_image(image: UploadFile = File(...), _: str = Depends(require_auth)):
@@ -105,6 +120,8 @@ async def upload_image(image: UploadFile = File(...), _: str = Depends(require_a
     blob.cache_control = "public,max-age=3600"
     blob.patch()
     return {"message": "Upload realizado com sucesso!", "url": get_image_url(blob), "name": file_name}
+
+
 # --- 2. READ (Listar imagens do bucket) ---
 @app.get("/api/images")
 async def list_images(_: str = Depends(require_auth)):
@@ -116,6 +133,8 @@ async def list_images(_: str = Depends(require_auth)):
         }
         for blob in bucket.list_blobs()
     ]
+
+
 # --- 3. UPDATE (Atualizar/Substituir uma imagem existente) ---
 @app.put("/api/images/{file_name:path}")
 async def update_image(file_name: str, image: UploadFile = File(...), _: str = Depends(require_auth)):
@@ -124,6 +143,8 @@ async def update_image(file_name: str, image: UploadFile = File(...), _: str = D
     content = await image.read()
     blob.upload_from_string(content, content_type=image.content_type)
     return {"message": "Imagem atualizada com sucesso!", "url": get_image_url(blob)}
+
+
 # --- 4. DELETE (Deletar imagem) ---
 @app.delete("/api/images/{file_name:path}")
 async def delete_image(file_name: str, _: str = Depends(require_auth)):
@@ -133,6 +154,8 @@ async def delete_image(file_name: str, _: str = Depends(require_auth)):
         raise HTTPException(status_code=404, detail="Imagem não encontrada.")
     blob.delete()
     return {"message": "Imagem deletada com sucesso!"}
+
+
 if __name__ == "__main__":
     import uvicorn
     uvicorn.run(app, host="0.0.0.0", port=int(os.getenv("PORT", 3000)))
