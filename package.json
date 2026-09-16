@@ -1,5 +1,5 @@
 {
-  "name": "api-filmes",
+  "name": "template-vision",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -10,11 +10,6 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@google-cloud/storage": "^8.1.0",
-    "cors": "^2.8.6",
-    "dotenv": "^17.4.2",
-    "express": "^5.2.1",
-    "multer": "^2.4.0",
     "react": "^19.2.8",
     "react-dom": "^19.2.8",
     "react-router-dom": "^7.18.4"
